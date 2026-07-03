@@ -1,0 +1,19 @@
+<%- include('partials/header') %>
+
+<div class="container my-5 text-center">
+  <div class="glass-card mx-auto text-danger" style="max-width: 650px;">
+    <h2 class="mb-4">Oops! Something went wrong</h2>
+    <div class="alert alert-danger border-danger border-opacity-25 bg-danger bg-opacity-10 text-danger rounded-3 p-4">
+      <p class="mb-0 fw-semibold fs-5"><%= message %></p>
+    </div>
+    <% if (error && error.stack) { %>
+      <div class="text-start mt-4">
+        <h5 class="text-white">Stack Trace:</h5>
+        <pre class="bg-dark text-muted p-3 rounded border border-secondary border-opacity-20 overflow-auto" style="max-height: 250px; font-size: 0.85rem;"><%= error.stack %></pre>
+      </div>
+    <% } %>
+    <a href="/" class="btn btn-outline-light mt-4 px-4 py-2">Go back home</a>
+  </div>
+</div>
+
+<%- include('partials/footer') %>

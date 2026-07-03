@@ -1,0 +1,30 @@
+{
+  "name": "tripmind-ai",
+  "version": "1.0.0",
+  "description": "AI-powered travel planning web application using Express, EJS, and Google Gemini API.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [
+    "travel",
+    "planner",
+    "ai",
+    "gemini",
+    "express",
+    "ejs"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google/genai": "latest",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "mongoose": "^8.4.3"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

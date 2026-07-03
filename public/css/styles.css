@@ -1,0 +1,115 @@
+/* TripMind AI - Modern Theme & Design System */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg-color: #0b0f19;
+  --bg-surface: rgba(22, 28, 45, 0.7);
+  --bg-surface-hover: rgba(30, 41, 59, 0.8);
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-hover: rgba(255, 255, 255, 0.15);
+  
+  --primary-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 50%, #ec4899 100%);
+  --secondary-gradient: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+  
+  --text-main: #f3f4f6;
+  --text-muted: #9ca3af;
+  --text-inverse: #0b0f19;
+  
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 8px 30px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 16px 40px rgba(0, 0, 0, 0.4);
+  
+  --font-title: 'Outfit', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+  
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.1) 0px, transparent 50%);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-title);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+  background: var(--bg-surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition-smooth);
+}
+
+.glass-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+
+/* Custom Premium Buttons */
+.btn-premium {
+  background: var(--primary-gradient);
+  color: #ffffff;
+  border: none;
+  font-family: var(--font-title);
+  font-weight: 600;
+  padding: 0.8rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
+  transition: var(--transition-smooth);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.btn-premium::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--secondary-gradient);
+  opacity: 0;
+  transition: var(--transition-smooth);
+  z-index: -1;
+}
+
+.btn-premium:hover {
+  color: #ffffff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.6);
+}
+
+.btn-premium:hover::before {
+  opacity: 1;
+}
+
+.btn-premium:active {
+  transform: translateY(0);
+}
+
+/* Footer styling */
+footer {
+  margin-top: auto;
+  border-top: 1px solid var(--border-color);
+  background-color: rgba(11, 15, 25, 0.9);
+  padding: 1.5rem 0;
+}
