@@ -1,10 +1,62 @@
 <%- include('partials/header') %>
 
-<div class="container my-5 text-center">
-  <div class="glass-card mx-auto" style="max-width: 600px;">
-    <h1 class="text-white mb-3">Welcome to TripMind AI</h1>
-    <p class="text-muted mb-4">Milestone 1 check: EJS layout configured, dotenv active, Express listening successfully.</p>
-    <a href="/planner" class="btn btn-premium px-5 py-3 fs-5">Start Planning</a>
+<div class="container py-5 my-md-5">
+  <!-- Hero Section -->
+  <div class="row align-items-center justify-content-center text-center mb-5">
+    <div class="col-lg-8">
+      <span class="badge rounded-pill bg-indigo bg-opacity-10 text-info border border-info border-opacity-25 px-3 py-2 mb-3">
+        <i class="bi bi-stars me-1 text-gradient"></i> Next-Gen Travel Planning
+      </span>
+      <h1 class="display-3 text-white mb-4 fw-extrabold" style="line-height: 1.15;">
+        Design Your Perfect Journey with <span class="text-gradient">TripMind AI</span>
+      </h1>
+      <p class="lead text-muted mb-5 mx-auto" style="max-width: 680px; font-size: 1.25rem;">
+        Transform your travel constraints, budget, and interests into a customized, day-by-day itinerary. Powered by Google's Gemini API for strict structured trip layout.
+      </p>
+      
+      <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+        <a href="/planner" class="btn btn-premium btn-lg px-5 py-3 fs-5 d-flex align-items-center justify-content-center">
+          Start Planning <i class="bi bi-arrow-right-short ms-2 fs-4"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Features Grid -->
+  <div class="row g-4 mt-5 justify-content-center">
+    <div class="col-md-4">
+      <div class="glass-card h-100 text-center text-md-start">
+        <div class="feature-icon">
+          <i class="bi bi-calendar-event"></i>
+        </div>
+        <h4 class="text-white mb-3">Customized Schedules</h4>
+        <p class="text-muted mb-0">
+          Receive structured schedules for morning, afternoon, and evening, completely matching your traveling pacing preference.
+        </p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="glass-card h-100 text-center text-md-start">
+        <div class="feature-icon">
+          <i class="bi bi-wallet2" style="color: #06b6d4;"></i>
+        </div>
+        <h4 class="text-white mb-3">Budget Estimation</h4>
+        <p class="text-muted mb-0">
+          Get complete insights into costs covering lodging, transit, food, and ticketing, tailored to your budget constraints.
+        </p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="glass-card h-100 text-center text-md-start">
+        <div class="feature-icon">
+          <i class="bi bi-check-circle" style="color: #ec4899;"></i>
+        </div>
+        <h4 class="text-white mb-3">Packing Lists & Tips</h4>
+        <p class="text-muted mb-0">
+          Receive tailored packing lists for clothes, devices, and accessories, along with localized destination health/safety advice.
+        </p>
+      </div>
+    </div>
   </div>
 </div>
 

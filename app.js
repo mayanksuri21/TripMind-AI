@@ -16,13 +16,22 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Simple test routes for Milestone 1
+// Simple test routes for Milestone 1-3
 app.get('/', (req, res) => {
   res.render('home');
 });
 
 app.get('/planner', (req, res) => {
-  res.send('Planner page placeholder for testing.');
+  res.render('planner');
+});
+
+app.post('/planner', (req, res) => {
+  console.log('[POST /planner] Received inputs:', req.body);
+  res.json({
+    success: true,
+    message: 'Form submitted successfully to backend route.',
+    receivedData: req.body
+  });
 });
 
 // Error handling middleware

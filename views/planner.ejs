@@ -1,0 +1,238 @@
+<%- include('partials/header') %>
+
+<div class="container py-5 my-md-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-10 col-xl-8">
+      
+      <!-- Back Link -->
+      <div class="mb-4">
+        <a href="/" class="text-info text-decoration-none d-inline-flex align-items-center transition-smooth">
+          <i class="bi bi-chevron-left me-1"></i> Back to Homepage
+        </a>
+      </div>
+
+      <!-- Header Section -->
+      <div class="text-center mb-5">
+        <h1 class="text-white mb-2">Create Your Travel Plan</h1>
+        <p class="text-muted mx-auto" style="max-width: 500px;">
+          Fill in your preferences, dates, and interests below. Our AI planner will map out a customized day-by-day experience for you.
+        </p>
+      </div>
+
+      <!-- Form Card -->
+      <div class="glass-card shadow-lg p-4 p-md-5">
+        <form action="/planner" method="POST" id="plannerForm" class="needs-validation" novalidate>
+          
+          <!-- Section 1: Destination & Dates -->
+          <div class="mb-5">
+            <h4 class="text-white mb-4 pb-2 border-bottom border-secondary border-opacity-10 d-flex align-items-center">
+              <span class="badge bg-indigo bg-opacity-10 text-info border border-info border-opacity-25 fs-6 me-2">1</span>
+              Destination & Timing
+            </h4>
+            
+            <div class="row g-4">
+              <!-- Destination -->
+              <div class="col-md-12">
+                <label for="destination" class="form-label text-white fw-medium">Where are you going?</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-dark border-secondary border-opacity-20 text-muted"><i class="bi bi-geo-alt"></i></span>
+                  <input type="text" class="form-control" id="destination" name="destination" placeholder="e.g. Kyoto, Japan or Paris, France" required>
+                  <div class="invalid-feedback">Please specify a destination.</div>
+                </div>
+              </div>
+
+              <!-- Start Date -->
+              <div class="col-md-6">
+                <label for="startDate" class="form-label text-white fw-medium">Start Date</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-dark border-secondary border-opacity-20 text-muted"><i class="bi bi-calendar3"></i></span>
+                  <input type="date" class="form-control" id="startDate" name="startDate" required>
+                  <div class="invalid-feedback">Please choose a start date.</div>
+                </div>
+              </div>
+
+              <!-- Duration -->
+              <div class="col-md-6">
+                <label for="duration" class="form-label text-white fw-medium">Duration (Days)</label>
+                <div class="input-group">
+                  <span class="input-group-text bg-dark border-secondary border-opacity-20 text-muted"><i class="bi bi-clock"></i></span>
+                  <input type="number" class="form-control" id="duration" name="duration" min="1" max="14" placeholder="e.g. 5" required>
+                  <div class="invalid-feedback">Please specify duration (1-14 days).</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 2: Budget & Travelers -->
+          <div class="mb-5">
+            <h4 class="text-white mb-4 pb-2 border-bottom border-secondary border-opacity-10 d-flex align-items-center">
+              <span class="badge bg-indigo bg-opacity-10 text-info border border-info border-opacity-25 fs-6 me-2">2</span>
+              Budget & Group
+            </h4>
+            
+            <div class="row g-4">
+              <!-- Budget tier -->
+              <div class="col-md-4">
+                <label for="budget" class="form-label text-white fw-medium">Budget Tier</label>
+                <select class="form-select" id="budget" name="budget" required>
+                  <option value="" disabled selected>Select tier...</option>
+                  <option value="Budget">Budget / Backpacker</option>
+                  <option value="Moderate">Moderate / Mid-range</option>
+                  <option value="Luxury">Luxury / Premium</option>
+                </select>
+                <div class="invalid-feedback">Please select a budget tier.</div>
+              </div>
+
+              <!-- Number of Travelers -->
+              <div class="col-md-4">
+                <label for="travelers" class="form-label text-white fw-medium">Travelers</label>
+                <select class="form-select" id="travelers" name="travelers" required>
+                  <option value="" disabled selected>Select size...</option>
+                  <option value="1">Solo (1 Traveler)</option>
+                  <option value="2">Couple (2 Travelers)</option>
+                  <option value="3-5">Family/Small Group (3-5)</option>
+                  <option value="6+">Large Group (6+)</option>
+                </select>
+                <div class="invalid-feedback">Please select number of travelers.</div>
+              </div>
+
+              <!-- Travel Style -->
+              <div class="col-md-4">
+                <label for="travelStyle" class="form-label text-white fw-medium">Travel Style</label>
+                <select class="form-select" id="travelStyle" name="travelStyle" required>
+                  <option value="" disabled selected>Select style...</option>
+                  <option value="Relaxed">Relaxed & Leisurely</option>
+                  <option value="Balanced">Balanced & Standard</option>
+                  <option value="Active">Active & Fast-paced</option>
+                  <option value="Adventure">Adventure-focused</option>
+                </select>
+                <div class="invalid-feedback">Please choose a travel style pacing.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Interests (Chips) -->
+          <div class="mb-5">
+            <h4 class="text-white mb-3 pb-2 border-bottom border-secondary border-opacity-10 d-flex align-items-center">
+              <span class="badge bg-indigo bg-opacity-10 text-info border border-info border-opacity-25 fs-6 me-2">3</span>
+              Interests & Activities
+            </h4>
+            <p class="text-muted small mb-4">Choose one or more items to personalize attractions recommended by the AI.</p>
+            
+            <div class="d-flex flex-wrap gap-2 justify-content-start">
+              <input type="checkbox" class="chip-checkbox" id="int-nature" name="interests" value="Nature">
+              <label class="chip-label" for="int-nature"><i class="bi bi-tree me-1"></i> Nature & Parks</label>
+
+              <input type="checkbox" class="chip-checkbox" id="int-history" name="interests" value="History">
+              <label class="chip-label" for="int-history"><i class="bi bi-bank me-1"></i> History & Temples</label>
+
+              <input type="checkbox" class="chip-checkbox" id="int-food" name="interests" value="Food">
+              <label class="chip-label" for="int-food"><i class="bi bi-egg-fried me-1"></i> Local Cuisine</label>
+
+              <input type="checkbox" class="chip-checkbox" id="int-shopping" name="interests" value="Shopping">
+              <label class="chip-label" for="int-shopping"><i class="bi bi-bag-check me-1"></i> Shopping</label>
+
+              <input type="checkbox" class="chip-checkbox" id="int-adventure" name="interests" value="Adventure">
+              <label class="chip-label" for="int-adventure"><i class="bi bi-compass me-1"></i> Adventure & Sports</label>
+
+              <input type="checkbox" class="chip-checkbox" id="int-art" name="interests" value="Art">
+              <label class="chip-label" for="int-art"><i class="bi bi-palette me-1"></i> Art & Museums</label>
+
+              <input type="checkbox" class="chip-checkbox" id="int-nightlife" name="interests" value="Nightlife">
+              <label class="chip-label" for="int-nightlife"><i class="bi bi-moon-stars me-1"></i> Nightlife & Clubs</label>
+
+              <input type="checkbox" class="chip-checkbox" id="int-wellness" name="interests" value="Wellness">
+              <label class="chip-label" for="int-wellness"><i class="bi bi-flower1 me-1"></i> Relax & Wellness</label>
+            </div>
+          </div>
+
+          <!-- Section 4: Accommodation, Transit, Food Preferences & Requests -->
+          <div class="mb-5">
+            <h4 class="text-white mb-4 pb-2 border-bottom border-secondary border-opacity-10 d-flex align-items-center">
+              <span class="badge bg-indigo bg-opacity-10 text-info border border-info border-opacity-25 fs-6 me-2">4</span>
+              Preferences & Accommodations
+            </h4>
+            
+            <div class="row g-4">
+              <!-- Accommodation Preference -->
+              <div class="col-md-4">
+                <label for="accommodation" class="form-label text-white fw-medium">Accommodation</label>
+                <select class="form-select" id="accommodation" name="accommodation" required>
+                  <option value="" disabled selected>Select class...</option>
+                  <option value="Hotel">Hotel</option>
+                  <option value="Hostel">Hostel / Guesthouse</option>
+                  <option value="Resort">Resort / Luxury Stay</option>
+                  <option value="Apartment">Apartment / Airbnb</option>
+                  <option value="No Preference">No Preference</option>
+                </select>
+                <div class="invalid-feedback">Please choose accommodation preference.</div>
+              </div>
+
+              <!-- Transportation Preference -->
+              <div class="col-md-4">
+                <label for="transportation" class="form-label text-white fw-medium">Transit</label>
+                <select class="form-select" id="transportation" name="transportation" required>
+                  <option value="" disabled selected>Select transit...</option>
+                  <option value="Public">Public Transit</option>
+                  <option value="Rental">Rental Car</option>
+                  <option value="Walking">Walking Only</option>
+                  <option value="Taxi">Taxi / Rideshare</option>
+                </select>
+                <div class="invalid-feedback">Please select transportation preference.</div>
+              </div>
+
+              <!-- Food Preference -->
+              <div class="col-md-4">
+                <label for="food" class="form-label text-white fw-medium">Dietary Style</label>
+                <select class="form-select" id="food" name="food" required>
+                  <option value="" disabled selected>Select diet...</option>
+                  <option value="All">No Dietary Limits (Eat All)</option>
+                  <option value="Vegetarian">Vegetarian</option>
+                  <option value="Vegan">Vegan</option>
+                  <option value="Halal">Halal</option>
+                  <option value="GlutenFree">Gluten-Free</option>
+                </select>
+                <div class="invalid-feedback">Please choose dietary style.</div>
+              </div>
+
+              <!-- Special Requests -->
+              <div class="col-md-12">
+                <label for="specialRequests" class="form-label text-white fw-medium">Special Requests (Optional)</label>
+                <textarea class="form-control" id="specialRequests" name="specialRequests" rows="3" placeholder="e.g. Accessibility needs, traveling with kids, vegetarian hotspots, historical focuses..."></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <div class="text-center pt-3">
+            <button type="submit" class="btn btn-premium btn-lg px-5 py-3 fs-5 w-100 w-sm-auto d-inline-flex align-items-center justify-content-center">
+              <i class="bi bi-cpu me-2"></i> Generate AI Itinerary
+            </button>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+  // Bootstrap 5 client-side validation script
+  (function () {
+    'use strict'
+    const forms = document.querySelectorAll('.needs-validation')
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
+</script>
+
+<%- include('partials/footer') %>
