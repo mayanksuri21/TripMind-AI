@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path');
 const notFound = require('./middleware/notFound');
 const errorHandler = require('./middleware/errorHandler');
+const homeRoutes = require('./routes/homeRoutes');
+const plannerRoutes = require('./routes/plannerRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,23 +18,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Simple test routes for Milestone 1-3
-app.get('/', (req, res) => {
-  res.render('home');
-});
-
-app.get('/planner', (req, res) => {
-  res.render('planner');
-});
-
-app.post('/planner', (req, res) => {
-  console.log('[POST /planner] Received inputs:', req.body);
-  res.json({
-    success: true,
-    message: 'Form submitted successfully to backend route.',
-    receivedData: req.body
-  });
-});
+// Routes
+app.use('/', homeRoutes);
+app.use('/planner', plannerRoutes);
 
 // Error handling middleware
 app.use(notFound);
