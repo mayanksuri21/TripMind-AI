@@ -49,14 +49,22 @@ Architecture:
 - Thin controller implementation
 - Async error handling
 
+### Milestone 5
+
+- Google Gemini API integration
+- Configured gemini client in config/gemini.js
+- Implemented geminiProvider with real API calls
+- Created test-gemini.js test script
+- .env.example provided
+
 ---
 
 ## Current Milestone
 
-Milestone 5
+Milestone 6
 
 Goal:
-Implement prompt layer and AI integration.
+Implement prompt layer for travel itineraries.
 
 ---
 
