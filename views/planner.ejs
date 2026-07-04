@@ -205,9 +205,15 @@
 
           <!-- Submit Button -->
           <div class="text-center pt-3">
-            <button type="submit" class="btn btn-premium btn-lg px-5 py-3 fs-5 w-100 w-sm-auto d-inline-flex align-items-center justify-content-center">
+            <button type="submit" id="submitBtn" class="btn btn-premium btn-lg px-5 py-3 fs-5 w-100 w-sm-auto d-inline-flex align-items-center justify-content-center">
               <i class="bi bi-cpu me-2"></i> Generate AI Itinerary
             </button>
+            <div id="loadingState" class="d-none">
+              <button type="button" disabled class="btn btn-premium btn-lg px-5 py-3 fs-5 w-100 w-sm-auto d-inline-flex align-items-center justify-content-center">
+                <span class="spinner-border spinner-border-sm me-2" aria-hidden="true"></span>
+                <span role="status">Generating your itinerary...</span>
+              </button>
+            </div>
           </div>
 
         </form>
@@ -228,6 +234,10 @@
           if (!form.checkValidity()) {
             event.preventDefault()
             event.stopPropagation()
+          } else {
+            // Show loading state on valid form submit
+            document.getElementById('submitBtn').classList.add('d-none')
+            document.getElementById('loadingState').classList.remove('d-none')
           }
           form.classList.add('was-validated')
         }, false)

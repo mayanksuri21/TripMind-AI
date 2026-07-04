@@ -10,7 +10,7 @@ class GeminiProvider {
     console.log('[GeminiProvider] Sending request...');
     try {
       const response = await geminiClient.models.generateContent({
-        model: 'gemini-2.0-flash',
+        model: 'gemini-2.5-flash',
         contents: prompt
       });
       // Extract and return the response text

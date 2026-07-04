@@ -1,0 +1,330 @@
+<%- include('partials/header') %>
+
+<!-- Link to custom result.css -->
+<link rel="stylesheet" href="/css/result.css">
+
+<!-- Hero Banner -->
+<section class="hero-banner py-5">
+    <div class="container text-center">
+        <div class="hero-content">
+            <h1 class="display-3 text-white fw-bold mb-4">
+                <i class="bi bi-geo-alt me-2"></i><%= itinerary.tripSummary.destination %>
+            </h1>
+            <p class="lead text-white-50 mb-5">
+                <i class="bi bi-calendar3 me-2"></i>
+                <%= itinerary.tripSummary.startDate %> - <%= itinerary.tripSummary.endDate %>
+                &nbsp;•&nbsp;
+                <%= itinerary.tripSummary.duration %> days
+            </p>
+            <div class="d-flex flex-wrap justify-content-center gap-2">
+                <span class="badge bg-indigo fs-6"><i class="bi bi-currency-exchange me-1"></i><%= itinerary.tripSummary.budgetTier %></span>
+                <span class="badge bg-cyan fs-6"><i class="bi bi-people me-1"></i><%= itinerary.tripSummary.travelers %></span>
+                <span class="badge bg-pink fs-6"><i class="bi bi-person-walking me-1"></i><%= itinerary.tripSummary.travelStyle %></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Main Content -->
+<section class="itinerary-content py-5">
+    <div class="container">
+        <!-- Trip Summary -->
+        <div class="mb-5">
+            <h2 class="section-title mb-4"><i class="bi bi-card-checklist me-2"></i>Trip Overview</h2>
+            <div class="glass-card">
+                <p class="mb-0"><%= itinerary.tripSummary.overallDescription %></p>
+            </div>
+        </div>
+
+        <!-- Destination Overview -->
+        <div class="mb-5">
+            <h2 class="section-title mb-4"><i class="bi bi-info-circle me-2"></i>Destination Overview</h2>
+            <div class="glass-card">
+                <p class="mb-0"><%= itinerary.destinationOverview.description %></p>
+            </div>
+        </div>
+
+        <!-- Weather Guide -->
+        <div class="mb-5">
+            <h2 class="section-title mb-4"><i class="bi bi-cloud-sun me-2"></i>Weather Guide</h2>
+            <div class="glass-card">
+                <p class="mb-2"><strong>Typical Weather:</strong> <%= itinerary.weatherGuide.typicalWeather %></p>
+                <p class="mb-2"><strong>Temperature Range:</strong> <%= itinerary.weatherGuide.temperatureRange %></p>
+                <p class="mb-2"><strong>Precipitation:</strong> <%= itinerary.weatherGuide.precipitation %></p>
+                <p class="mb-0"><strong>Advice:</strong> <%= itinerary.weatherGuide.advice %></p>
+            </div>
+        </div>
+
+        <!-- Day-wise Itinerary (Accordion) -->
+        <div class="mb-5">
+            <h2 class="section-title mb-4"><i class="bi bi-calendar-week me-2"></i>Day-by-Day Itinerary</h2>
+            <div class="accordion" id="itineraryAccordion">
+                <% itinerary.dailyPlan.forEach((day, index) => { %>
+                <div class="accordion-item mb-2">
+                    <h2 class="accordion-header" id="heading<%= index %>">
+                        <button class="accordion-button <%= index === 0 ? '' : 'collapsed' %>" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= index %>" aria-expanded="<%= index === 0 %>" aria-controls="collapse<%= index %>">
+                            <i class="bi bi-calendar-check me-2"></i> Day <%= day.day %>: <%= day.date %>
+                        </button>
+                    </h2>
+                    <div id="collapse<%= index %>" class="accordion-collapse collapse <%= index === 0 ? 'show' : '' %>" aria-labelledby="heading<%= index %>" data-bs-parent="#itineraryAccordion">
+                        <div class="accordion-body">
+                            <div class="row">
+                                <div class="col-md-4 mb-3 mb-md-0">
+                                    <div class="time-block morning">
+                                        <h6><i class="bi bi-sunrise me-1"></i> Morning</h6>
+                                        <p class="mb-1"><%= day.morning.activity %></p>
+                                        <small class="text-muted"><i class="bi bi-geo-alt me-1"></i><%= day.morning.location %></small>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3 mb-md-0">
+                                    <div class="time-block afternoon">
+                                        <h6><i class="bi bi-sun me-1"></i> Afternoon</h6>
+                                        <p class="mb-1"><%= day.afternoon.activity %></p>
+                                        <small class="text-muted"><i class="bi bi-geo-alt me-1"></i><%= day.afternoon.location %></small>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="time-block evening">
+                                        <h6><i class="bi bi-moon-stars me-1"></i> Evening</h6>
+                                        <p class="mb-1"><%= day.evening.activity %></p>
+                                        <small class="text-muted"><i class="bi bi-geo-alt me-1"></i><%= day.evening.location %></small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+        </div>
+
+        <!-- Budget Breakdown -->
+        <div class="mb-5">
+            <h2 class="section-title mb-4"><i class="bi bi-wallet2 me-2"></i>Budget Breakdown</h2>
+            <div class="glass-card">
+                <h5 class="text-cyan mb-4">Total: <%= itinerary.budgetBreakdown.totalEstimate %></h5>
+                <div class="row g-3">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="budget-item">
+                            <i class="bi bi-house-door"></i> Accommodation: <%= itinerary.budgetBreakdown.accommodation %>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="budget-item">
+                            <i class="bi bi-egg-fried"></i> Food: <%= itinerary.budgetBreakdown.food %>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="budget-item">
+                            <i class="bi bi-car-front"></i> Transport: <%= itinerary.budgetBreakdown.transportation %>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="budget-item">
+                            <i class="bi bi-ticket-perforated"></i> Activities: <%= itinerary.budgetBreakdown.activities %>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="budget-item">
+                            <i class="bi bi-three-dots"></i> Miscellaneous: <%= itinerary.budgetBreakdown.miscellaneous %>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Accommodation Suggestions -->
+        <div class="mb-5">
+            <h2 class="section-title mb-4"><i class="bi bi-house-heart me-2"></i>Accommodation Suggestions</h2>
+            <div class="row g-3">
+                <% itinerary.accommodationSuggestions.forEach(acc => { %>
+                <div class="col-md-6">
+                    <div class="glass-card h-100">
+                        <h5><%= acc.name %></h5>
+                        <p class="text-muted mb-1"><i class="bi bi-pin-map me-1"></i><%= acc.location %></p>
+                        <span class="badge bg-indigo mb-2"><%= acc.priceRange %></span>
+                        <p class="mb-0"><%= acc.description %></p>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+        </div>
+
+        <!-- Transportation Plan -->
+        <div class="mb-5">
+            <h2 class="section-title mb-4"><i class="bi bi-airplane me-2"></i>Transportation Plan</h2>
+            <div class="glass-card">
+                <p class="mb-2"><strong>Arrival:</strong> <%= itinerary.transportationPlan.arrival %></p>
+                <p class="mb-2"><strong>Getting Around:</strong> <%= itinerary.transportationPlan.gettingAround %></p>
+                <p class="mb-0"><strong>Departure:</strong> <%= itinerary.transportationPlan.departure %></p>
+            </div>
+        </div>
+
+        <!-- Food Recommendations -->
+        <div class="mb-5">
+            <h2 class="section-title mb-4"><i class="bi bi-utensils me-2"></i>Food Recommendations</h2>
+            <div class="glass-card mb-3">
+                <h6 class="mb-2"><i class="bi bi-star me-1"></i> Must Try:</h6>
+                <div class="d-flex flex-wrap gap-2">
+                    <% itinerary.foodRecommendations.mustTry.forEach(food => { %>
+                    <span class="badge bg-pink"><%= food %></span>
+                    <% }) %>
+                </div>
+            </div>
+            <div class="row g-3">
+                <% itinerary.foodRecommendations.restaurants.forEach(rest => { %>
+                <div class="col-md-6">
+                    <div class="glass-card h-100">
+                        <h5><%= rest.name %></h5>
+                        <p class="text-muted mb-1"><i class="bi bi-pin-map me-1"></i><%= rest.location %></p>
+                        <span class="badge bg-indigo mb-2"><%= rest.priceRange %></span>
+                        <p class="mb-0"><%= rest.description %></p>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+        </div>
+
+        <!-- Packing Checklist -->
+        <div class="mb-5">
+            <h2 class="section-title mb-4"><i class="bi bi-bag-check me-2"></i>Packing Checklist</h2>
+            <div class="row g-3">
+                <div class="col-md-6">
+                    <div class="glass-card h-100">
+                        <h6><i class="bi bi-tshirt me-1"></i> Clothing</h6>
+                        <ul class="list-unstyled mb-0">
+                            <% itinerary.packingChecklist.clothing.forEach(item => { %>
+                            <li><i class="bi bi-check-circle me-2 text-green"></i><%= item %></li>
+                            <% }) %>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="glass-card h-100">
+                        <h6><i class="bi bi-droplet-half me-1"></i> Toiletries</h6>
+                        <ul class="list-unstyled mb-0">
+                            <% itinerary.packingChecklist.toiletries.forEach(item => { %>
+                            <li><i class="bi bi-check-circle me-2 text-green"></i><%= item %></li>
+                            <% }) %>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="glass-card h-100">
+                        <h6><i class="bi bi-phone me-1"></i> Electronics</h6>
+                        <ul class="list-unstyled mb-0">
+                            <% itinerary.packingChecklist.electronics.forEach(item => { %>
+                            <li><i class="bi bi-check-circle me-2 text-green"></i><%= item %></li>
+                            <% }) %>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="glass-card h-100">
+                        <h6><i class="bi bi-file-earmark-check me-1"></i> Documents & More</h6>
+                        <ul class="list-unstyled mb-0">
+                            <% itinerary.packingChecklist.documents.forEach(item => { %>
+                            <li><i class="bi bi-check-circle me-2 text-green"></i><%= item %></li>
+                            <% }) %>
+                            <% itinerary.packingChecklist.miscellaneous.forEach(item => { %>
+                            <li><i class="bi bi-check-circle me-2 text-green"></i><%= item %></li>
+                            <% }) %>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Clothing Recommendations -->
+        <div class="mb-5">
+            <h2 class="section-title mb-4"><i class="bi bi-person-rolodex me-2"></i>Clothing Recommendations</h2>
+            <div class="glass-card">
+                <p class="mb-2"><strong>Daywear:</strong> <%= itinerary.clothingRecommendations.daywear %></p>
+                <p class="mb-2"><strong>Eveningwear:</strong> <%= itinerary.clothingRecommendations.eveningwear %></p>
+                <p class="mb-0"><strong>Footwear:</strong> <%= itinerary.clothingRecommendations.footwear %></p>
+            </div>
+        </div>
+
+        <!-- Photo Spots -->
+        <div class="mb-5">
+            <h2 class="section-title mb-4"><i class="bi bi-camera me-2"></i>Photo Spots</h2>
+            <div class="row g-3">
+                <% itinerary.photoSpots.forEach(spot => { %>
+                <div class="col-md-6">
+                    <div class="glass-card h-100">
+                        <h5><%= spot.name %></h5>
+                        <p class="text-muted mb-1"><i class="bi bi-pin-map me-1"></i><%= spot.location %></p>
+                        <p class="mb-0"><%= spot.description %></p>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+        </div>
+
+        <!-- Hidden Gems -->
+        <div class="mb-5">
+            <h2 class="section-title mb-4"><i class="bi bi-gem me-2"></i>Hidden Gems</h2>
+            <div class="row g-3">
+                <% itinerary.hiddenGems.forEach(gem => { %>
+                <div class="col-md-6">
+                    <div class="glass-card h-100">
+                        <h5><%= gem.name %></h5>
+                        <p class="text-muted mb-1"><i class="bi bi-pin-map me-1"></i><%= gem.location %></p>
+                        <p class="mb-0"><%= gem.description %></p>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+        </div>
+
+        <!-- Travel Tips -->
+        <div class="mb-5">
+            <h2 class="section-title mb-4"><i class="bi bi-lightbulb me-2"></i>Travel Tips</h2>
+            <div class="glass-card">
+                <ul class="list-unstyled mb-0">
+                    <% itinerary.travelTips.forEach(tip => { %>
+                    <li class="mb-2"><i class="bi bi-lightbulb-fill me-2 text-yellow"></i><%= tip %></li>
+                    <% }) %>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Safety Tips -->
+        <div class="mb-5">
+            <h2 class="section-title mb-4"><i class="bi bi-shield-check me-2"></i>Safety Tips</h2>
+            <div class="glass-card">
+                <ul class="list-unstyled mb-0">
+                    <% itinerary.safetyTips.forEach(tip => { %>
+                    <li class="mb-2"><i class="bi bi-exclamation-triangle-fill me-2 text-yellow"></i><%= tip %></li>
+                    <% }) %>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Emergency Information -->
+        <div class="mb-5">
+            <h2 class="section-title mb-4"><i class="bi bi-telephone-outbound me-2"></i>Emergency Information</h2>
+            <div class="glass-card">
+                <p class="mb-2"><strong>Police:</strong> <%= itinerary.emergencyInformation.police %></p>
+                <p class="mb-2"><strong>Ambulance:</strong> <%= itinerary.emergencyInformation.ambulance %></p>
+                <p class="mb-2"><strong>Fire:</strong> <%= itinerary.emergencyInformation.fire %></p>
+                <p class="mb-2"><strong>Embassy:</strong> <%= itinerary.emergencyInformation.embassy %></p>
+                <p class="mb-0"><strong>Local Contacts:</strong></p>
+                <ul class="list-unstyled">
+                    <% itinerary.emergencyInformation.localEmergencyContacts.forEach(contact => { %>
+                    <li><i class="bi bi-telephone me-2"></i><%= contact %></li>
+                    <% }) %>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Back to Planner -->
+        <div class="text-center">
+            <a href="/planner" class="btn btn-premium btn-lg px-5">
+                <i class="bi bi-arrow-left me-2"></i> Plan Another Trip
+            </a>
+        </div>
+    </div>
+</section>
+
+<%- include('partials/footer') %>
