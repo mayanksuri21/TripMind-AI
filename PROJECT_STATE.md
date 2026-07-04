@@ -57,14 +57,31 @@ Architecture:
 - Created test-gemini.js test script
 - .env.example provided
 
+### Milestone 6
+
+- Prompt engineering layer implemented
+- Created jsonSchema.js with detailed response schema
+- Created systemPrompt.js defining AI behavior
+- Created plannerPrompt.js prompt generator
+- Added MILESTONE_6_SUMMARY.md
+
+### Milestone 7
+
+- Complete AI itinerary generation pipeline
+- Created JSON parser and validator utilities
+- Enhanced prompts with improved rules
+- Orchestration via travelPlannerService
+- Enhanced error handling and logging
+- Added MILESTONE_7_SUMMARY.md
+
 ---
 
 ## Current Milestone
 
-Milestone 6
+Milestone 8
 
 Goal:
-Implement prompt layer for travel itineraries.
+Result Rendering (create result.ejs, display itinerary)
 
 ---
 

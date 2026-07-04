@@ -13,16 +13,12 @@ const PlannerController = {
    * Handle planner form submission and generate trip
    */
   generate: asyncHandler(async (req, res) => {
-    console.log('[PlannerController] Generating trip for preferences:', req.body);
-
-    // In future milestones, we will call travelPlannerService.planTrip()
-    const result = {
+    console.log('[PlannerController] Received planner form submission');
+    const itinerary = await travelPlannerService.generateItinerary(req.body);
+    res.json({
       success: true,
-      message: 'Planner form submitted successfully (controllers and routes implemented)',
-      receivedData: req.body
-    };
-
-    res.json(result);
+      itinerary
+    });
   })
 };
 
