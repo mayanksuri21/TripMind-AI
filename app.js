@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const path = require('path');
+const session = require('express-session');
 const notFound = require('./middleware/notFound');
 const errorHandler = require('./middleware/errorHandler');
 const homeRoutes = require('./routes/homeRoutes');
@@ -14,6 +15,12 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
 // Middleware
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'tripmind-secret-key',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 1000 * 60 * 60 * 24 } // 24 hours
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
