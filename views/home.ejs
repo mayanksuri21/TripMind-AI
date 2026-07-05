@@ -1,59 +1,99 @@
 <%- include('partials/header') %>
 
-<div class="container py-5 my-md-5">
-  <!-- Hero Section -->
-  <div class="row align-items-center justify-content-center text-center mb-5">
-    <div class="col-lg-8">
-      <span class="badge rounded-pill bg-indigo bg-opacity-10 text-info border border-info border-opacity-25 px-3 py-2 mb-3">
-        <i class="bi bi-stars me-1 text-gradient"></i> Next-Gen Travel Planning
-      </span>
-      <h1 class="display-3 text-white mb-4 fw-extrabold" style="line-height: 1.15;">
-        Design Your Perfect Journey with <span class="text-gradient">TripMind AI</span>
-      </h1>
-      <p class="lead text-muted mb-5 mx-auto" style="max-width: 680px; font-size: 1.25rem;">
-        Transform your travel constraints, budget, and interests into a customized, day-by-day itinerary. Powered by Google's Gemini API for strict structured trip layout.
-      </p>
-      
-      <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
-        <a href="/planner" class="btn btn-premium btn-lg px-5 py-3 fs-5 d-flex align-items-center justify-content-center">
-          Start Planning <i class="bi bi-arrow-right-short ms-2 fs-4"></i>
-        </a>
+<div class="animated-bg">
+  <div class="container hero-section">
+    <div class="row align-items-center justify-content-center text-center">
+      <div class="col-lg-8">
+        <span class="badge badge-accent mb-3">
+          <i class="bi bi-stars me-1"></i> AI-Powered Travel Planning
+        </span>
+        <h1 class="display-4 mb-4 fw-bold" style="line-height: 1.15;">
+          Plan Perfect Trips with <span style="background: linear-gradient(135deg, #4F46E5, #7C3AED); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">TripMind AI</span>
+        </h1>
+        <p class="lead text-muted mb-5 mx-auto" style="max-width: 650px;">
+          Generate personalized, day-by-day itineraries tailored to your budget, travel style, and interests. All powered by Google Gemini AI.
+        </p>
+        <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+          <a href="/planner" class="btn btn-primary btn-lg px-5 py-3 d-flex align-items-center justify-content-center">
+            Start Planning <i class="bi bi-arrow-right-short ms-2 fs-4"></i>
+          </a>
+        </div>
       </div>
     </div>
   </div>
+</div>
 
-  <!-- Features Grid -->
-  <div class="row g-4 mt-5 justify-content-center">
-    <div class="col-md-4">
-      <div class="glass-card h-100 text-center text-md-start">
+<!-- Features Section -->
+<div class="container py-5 my-5">
+  <div class="text-center mb-5">
+    <h2 class="fw-bold mb-3">Why Choose TripMind AI?</h2>
+    <p class="text-muted">Everything you need for an amazing trip, in one place.</p>
+  </div>
+
+  <div class="row g-4">
+    <div class="col-md-6 col-lg-4">
+      <div class="app-card h-100">
         <div class="feature-icon">
-          <i class="bi bi-calendar-event"></i>
+          <i class="bi bi-calendar3"></i>
         </div>
-        <h4 class="text-white mb-3">Customized Schedules</h4>
-        <p class="text-muted mb-0">
-          Receive structured schedules for morning, afternoon, and evening, completely matching your traveling pacing preference.
+        <h4 class="fw-bold mb-3">Day-by-Day Itineraries</h4>
+        <p class="text-muted">
+          Structured plans with morning, afternoon, and evening activities tailored to your pace.
         </p>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="glass-card h-100 text-center text-md-start">
+    <div class="col-md-6 col-lg-4">
+      <div class="app-card h-100">
         <div class="feature-icon">
-          <i class="bi bi-wallet2" style="color: #06b6d4;"></i>
+          <i class="bi bi-cash-coin"></i>
         </div>
-        <h4 class="text-white mb-3">Budget Estimation</h4>
-        <p class="text-muted mb-0">
-          Get complete insights into costs covering lodging, transit, food, and ticketing, tailored to your budget constraints.
+        <h4 class="fw-bold mb-3">Budget Estimation</h4>
+        <p class="text-muted">
+          Complete breakdown of costs for accommodation, food, transport, and activities.
         </p>
       </div>
     </div>
-    <div class="col-md-4">
-      <div class="glass-card h-100 text-center text-md-start">
+    <div class="col-md-6 col-lg-4">
+      <div class="app-card h-100">
         <div class="feature-icon">
-          <i class="bi bi-check-circle" style="color: #ec4899;"></i>
+          <i class="bi bi-bag-check"></i>
         </div>
-        <h4 class="text-white mb-3">Packing Lists & Tips</h4>
-        <p class="text-muted mb-0">
-          Receive tailored packing lists for clothes, devices, and accessories, along with localized destination health/safety advice.
+        <h4 class="fw-bold mb-3">Packing Lists</h4>
+        <p class="text-muted">
+          Tailored packing checklists, clothing recommendations, and essential items.
+        </p>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="app-card h-100">
+        <div class="feature-icon">
+          <i class="bi bi-camera-fill"></i>
+        </div>
+        <h4 class="fw-bold mb-3">Photo Spots</h4>
+        <p class="text-muted">
+          Discover hidden gems and the best places for amazing photos.
+        </p>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="app-card h-100">
+        <div class="feature-icon">
+          <i class="bi bi-shield-check"></i>
+        </div>
+        <h4 class="fw-bold mb-3">Safety Tips</h4>
+        <p class="text-muted">
+          Local safety advice and emergency information for your destination.
+        </p>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="app-card h-100">
+        <div class="feature-icon">
+          <i class="bi bi-file-earmark-pdf"></i>
+        </div>
+        <h4 class="fw-bold mb-3">PDF Export</h4>
+        <p class="text-muted">
+          Download your itinerary as a beautiful PDF for offline access.
         </p>
       </div>
     </div>

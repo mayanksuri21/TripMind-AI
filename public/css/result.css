@@ -1,72 +1,44 @@
-/* Custom styles for itinerary result page */
+/* TripMind AI Result Page Styles */
+
 .hero-banner {
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(99, 102, 241, 0.1) 100%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: linear-gradient(135deg, #f0f4ff, #fff0f5);
 }
 
-.section-title {
-    color: white;
-    font-weight: 700;
-    border-bottom: 2px solid rgba(16, 185, 129, 0.3);
-    padding-bottom: 0.5rem;
+.section-heading {
     margin-bottom: 1.5rem;
 }
 
-.time-block {
-    padding: 1.5rem;
-    border-radius: 0.75rem;
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.time-block.morning {
-    border-left: 4px solid #fbbf24;
-}
-
-.time-block.afternoon {
-    border-left: 4px solid #f97316;
-}
-
-.time-block.evening {
-    border-left: 4px solid #a855f7;
-}
-
-.budget-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1rem;
-    background: rgba(16, 185, 129, 0.08);
-    border-radius: 0.5rem;
-    border: 1px solid rgba(16, 185, 129, 0.2);
-}
-
 .accordion-button {
-    background: rgba(255, 255, 255, 0.02);
-    color: white;
+    font-family: var(--font-title);
     font-weight: 600;
 }
 
-.accordion-button:not(.collapsed) {
-    background: rgba(99, 102, 241, 0.15);
-    color: white;
-    box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+.app-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.accordion-button::after {
-    filter: invert(1);
+.app-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-.accordion-button:focus {
-    box-shadow: none;
-    border-color: rgba(99, 102, 241, 0.3);
+.badge {
+    font-weight: 500;
 }
 
-.accordion-item {
-    background: transparent;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+/* Print Styles */
+@media print {
+    body {
+        background: white;
+    }
+    .hero-banner {
+        background: #f8fafc !important;
+    }
+    .animated-bg {
+        background: #f8fafc !important;
+    }
+    .app-card {
+        box-shadow: none !important;
+        border: 1px solid #e2e8f0 !important;
+    }
 }
-
-.text-green { color: #10b981; }
-.text-yellow { color: #f59e0b; }
-.text-cyan { color: #06b6d4; }
